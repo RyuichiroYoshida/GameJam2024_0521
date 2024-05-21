@@ -11,6 +11,9 @@ public enum PlayerLaneState
 public class PlayerManager : MonoBehaviour
 {
     //パラメーター
+    [SerializeField] GameObject PlayerLeft;
+    [SerializeField] GameObject PlayerMiddle;
+    [SerializeField] GameObject PlayerRight;
     public PlayerLaneState PlayLane;
 
     //変数の定義
@@ -35,13 +38,32 @@ public class PlayerManager : MonoBehaviour
         }
 
         //レーンに合わせて、変更
-        //switch (PlayLane)
-        //{
-            //case PlayerLaneState.Left:
-            //case PlayerLaneState.Middle:
-            //case PlayerLaneState.Right:
-            //case default:
-        //}
+        switch (PlayLane)
+        {
+            case PlayerLaneState.Left:
+                LaneLeft();
+                break;
+            case PlayerLaneState.Middle:
+                LaneMiddle();
+                break;
+            case PlayerLaneState.Right:
+                LaneRight();
+                break;
+            default:
+                break;
+        }
+        void LaneLeft()
+        {
+
+        }
+        void LaneMiddle()
+        { 
+
+        }
+        void LaneRight()
+        {
+
+        }
     }
 
     //当たり判定
