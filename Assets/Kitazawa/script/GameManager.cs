@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         thisInstance = this;
         SetCurrentState(GameState.Title);
+        gm_time = 0.0f;
     }
 
 
