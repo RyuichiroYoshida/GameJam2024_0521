@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public enum GameState
 {
     Title,
-    Prepare,
     InGame,
     Dead,
     Result
@@ -21,7 +20,9 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
 
     //アサイン
-    [SerializeField] Text _uiTime;
+    [SerializeField] Text _uiTime; //後で消す
+    [SerializeField] PlayerManager _playerManager;
+    //Managerをもっと増やす
 
     // 変数の定義
     public float gm_time;
@@ -34,8 +35,15 @@ public class GameManager : MonoBehaviour
         gm_time = 0.0f;
         //初めのGameState
         SetCurrentState(GameState.Title);
+
+        //GetComporment
+        _playerManager = GetComponent<PlayerManager>();
     }
 
+    public void Start()
+    {
+
+    }
 
     // 外からこのメソッドを使って状態を変更
     public void SetCurrentState(GameState state)
@@ -50,95 +58,82 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.Title:
-                TitleAction();
-                break;
-            case GameState.Prepare:
-                //StartCoroutine(PrepareCoroutine());
+                TitleChanged();
                 break;
             case GameState.InGame:
-                InGameAction();
+                InGameChanged();
                 break;
             case GameState.Dead:
-                DeadAction();
+                DeadChanged();
                 break;
             case GameState.Result:
-                EndAction();
+                ResultChanged();
                 break;
             default:
                 break;
         }
     }
 
-    // Startになったときの変更時処理
-    void TitleAction()
-    {
-        SetCurrentState(GameState.InGame);//とりあえず、開始後すぐゲーム実行
-    }
-
-    // Prepareになったときの変更時処理
-    void PrepareCoroutine() //なにこれ。コールチンってなに？
-    //IEnumerator PrepareCoroutine() //なにこれ。コールチンってなに？
-    {
-        //label.text = "3";
-        //yield return new WaitForSeconds(1);
-        //label.text = "2";
-        //yield return new WaitForSeconds(1);
-        //label.text = "1";
-        //yield return new WaitForSeconds(1);
-        //label.text = "";
-        //SetCurrentState(GameState.InGame);
-    }
-
-    // InGameになったときの変更時処理
-    void InGameAction()
-    {
-        //label.text = "ゲーム中";
-    }
-
-    // Deadになったときの変更時処理
-    void DeadAction()
-    {
-    }
-
-    // Resultになったときの変更時処理
-    void EndAction()
-    {
-    }
-
-    //Start
-    public void Start()
-    {
-        
-    }
-    //Update
+    // //シーンごとにUpdate
     public void Update()
     {
         switch (currentGameState)
         {
             case GameState.Title:
-                
-                break;
-            case GameState.Prepare:
-                
+                TitleUpdate();
                 break;
             case GameState.InGame:
-                //タイムを加算
-                gm_time += Time.deltaTime;
-                //UI
-                _uiTime.text = "タイム: " + gm_time.ToString();
-                //_uiTime.text = "こんにちは";
-                //UIManagerを呼び出して上げる
-
+                InGameUpdate();
                 break;
             case GameState.Dead:
-                
+                DeadUpdate();
                 break;
             case GameState.Result:
-                Debug.Log("ゲーム時間: " + gm_time);
+                ResultUpdate();
                 break;
             default:
+
                 break;
         }
+    }
+
+    // Titleになったときの変更時
+    void TitleChanged()
+    {
+        //SetCurrentState(GameState.InGame);//とりあえず、開始後すぐゲーム実行
+    }
+    void TitleUpdate()
+    {
+        
+    }
+
+    // InGameになったときの変更時
+    void InGameChanged()
+    {
+        //label.text = "ゲーム中";
+    }
+    void InGameUpdate()
+    {
+        _playerManager.GM_Update();
+    }
+
+    // Deadになったときの変更時処理
+    void DeadChanged()
+    {
+    }
+    void DeadUpdate()
+    {
+
+    }
+
+    // Resultになったときの変更時処理
+    void ResultChanged()
+    {
+        Debug.Log("ゲーム時間: " + gm_time);
+    }
+    void ResultUpdate()
+    {
+
     }
 }
 
