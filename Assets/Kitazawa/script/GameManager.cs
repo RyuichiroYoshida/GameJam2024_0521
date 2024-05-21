@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
     void InGameAction()
     {
         //label.text = "ゲーム中";
-
     }
 
     // Deadになったときの変更時処理
@@ -106,8 +105,13 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    //GameStateごとの常時実行処理
-    private void Update()
+    //Start
+    public void Start()
+    {
+        
+    }
+    //Update
+    public void Update()
     {
         switch (currentGameState)
         {
@@ -123,6 +127,7 @@ public class GameManager : MonoBehaviour
                 //UI
                 _uiTime.text = "タイム: " + gm_time.ToString();
                 //_uiTime.text = "こんにちは";
+                //UIManagerを呼び出して上げる
 
                 break;
             case GameState.Dead:
