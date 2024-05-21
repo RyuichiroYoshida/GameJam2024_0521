@@ -18,12 +18,11 @@ public class GameManager : MonoBehaviour
     public static GameManager thisInstance;
 
     // 現在のゲームステータス
-    private GameState currentGameState;
-
+    public GameState currentGameState;
 
     // 例
-    public Text label;
-    public Button button;
+    public float gm_time;
+    Text label;
 
     void Awake()
     {
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviour
                 StartAction();
                 break;
             case GameState.Prepare:
-                StartCoroutine(PrepareCoroutine());
+                //StartCoroutine(PrepareCoroutine());
                 break;
             case GameState.InGame:
                 InGameAction();
@@ -70,17 +69,17 @@ public class GameManager : MonoBehaviour
     }
 
     // Prepareになったときの処理
-    IEnumerator PrepareCoroutine() //なにこれ。コールチンってなに？
-    {
-        label.text = "3";
-        yield return new WaitForSeconds(1);
-        label.text = "2";
-        yield return new WaitForSeconds(1);
-        label.text = "1";
-        yield return new WaitForSeconds(1);
-        label.text = "";
-        SetCurrentState(GameState.InGame);
-    }
+    //IEnumerator PrepareCoroutine() //なにこれ。コールチンってなに？
+    //{
+    //    //label.text = "3";
+    //    //yield return new WaitForSeconds(1);
+    //    //label.text = "2";
+    //    //yield return new WaitForSeconds(1);
+    //    //label.text = "1";
+    //    //yield return new WaitForSeconds(1);
+    //    //label.text = "";
+    //    //SetCurrentState(GameState.InGame);
+    //}
     // InGameになったときの処理
     void InGameAction()
     {
@@ -94,6 +93,31 @@ public class GameManager : MonoBehaviour
     // Resultになったときの処理
     void EndAction()
     {
+    }
+
+    private void Update()
+    {
+        switch (currentGameState)
+        {
+            case GameState.Title:
+                
+                break;
+            case GameState.Prepare:
+                
+                break;
+            case GameState.InGame:
+                //タイムを加算
+                gm_time += Time.deltaTime;
+                break;
+            case GameState.Dead:
+                
+                break;
+            case GameState.Result:
+                Debug.Log("ゲーム時間: " + gm_time);
+                break;
+            default:
+                break;
+        }
     }
 }
 
