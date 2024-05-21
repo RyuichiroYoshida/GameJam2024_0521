@@ -378,10 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b89136cdbe6c442ac48576564f0207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gsArr:
-  - {fileID: 0}
-  - {fileID: 1743091395}
-  - {fileID: 2078104222}
+  _timeObject: {fileID: 1788786252}
+  _scoreObject: {fileID: 544802847}
+  _resultObject: {fileID: 1514529710}
 --- !u!4 &587515108
 Transform:
   m_ObjectHideFlags: 0
@@ -913,6 +912,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
+  _uiTime: {fileID: 0}
+  _playerManager: {fileID: 0}
   gm_time: 0
 --- !u!4 &2019586018
 Transform:

@@ -7,7 +7,10 @@ using DG.Tweening;
 public class ChangeScene : MonoBehaviour
 {
     [SerializeField]GameObject _start = null;
-
+    private void Start()
+    {
+        GetComponent<RectTransform>().SetAsFirstSibling();
+    }
     public void SceneOut()
     {
         Destroy(_start);

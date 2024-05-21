@@ -29,10 +29,16 @@ public class UIManager : MonoBehaviour
     {
         if (_gameManager.currentGameState == GameState.InGame)
         {
+            _timeObject.SetActive(true);
+            _scoreObject.SetActive(true);
             _timeText.text = "Time:" + _time.ToString("00");
             _scoreText.text = "Score:" + _score.ToString("000000");
         }
-    }
+        else
+        {
+            Debug.Log("ステートが違います");
+        }
+    }//InGame中に呼び出す
 
     public void EndText(int _result)
     {
@@ -43,5 +49,9 @@ public class UIManager : MonoBehaviour
             _timeObject.SetActive(false);
             _scoreObject.SetActive(false);
         }
-    }
+        else
+        {
+            Debug.Log("ステートが違います");
+        }
+    }//resultになったら呼び出す
 }
