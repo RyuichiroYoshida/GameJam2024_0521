@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     // Startになったときの変更時処理
     void TitleAction()
     {
+        SetCurrentState(GameState.InGame);//とりあえず、開始後すぐゲーム実行
     }
 
     // Prepareになったときの変更時処理
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
     // InGameになったときの変更時処理
     void InGameAction()
     {
-        label.text = "ゲーム中";
+        //label.text = "ゲーム中";
 
     }
 
@@ -120,8 +121,8 @@ public class GameManager : MonoBehaviour
                 //タイムを加算
                 gm_time += Time.deltaTime;
                 //UI
-                //_uiTime.text = "タイム: " + gm_time.ToString();
-                _uiTime.text = "こんにちは";
+                _uiTime.text = "タイム: " + gm_time.ToString();
+                //_uiTime.text = "こんにちは";
 
                 break;
             case GameState.Dead:
