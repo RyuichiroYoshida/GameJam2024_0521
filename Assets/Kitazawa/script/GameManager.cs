@@ -20,15 +20,20 @@ public class GameManager : MonoBehaviour
     // 現在のゲームステータス
     public GameState currentGameState;
 
-    // 例
+    //アサイン
+    [SerializeField] Text _uiTime;
+
+    // 変数の定義
     public float gm_time;
     Text label;
 
     void Awake()
     {
+        //初期化
         thisInstance = this;
-        SetCurrentState(GameState.Title);
         gm_time = 0.0f;
+        //初めのGameState
+        SetCurrentState(GameState.Title);
     }
 
 
@@ -39,13 +44,13 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged(currentGameState);
     }
 
-    // 状態が変わったら何をするか -> メソッドを実行
+    // 状態が変わったら変更時メソッドを実行
     void OnGameStateChanged(GameState state)
     {
         switch (state)
         {
             case GameState.Title:
-                StartAction();
+                TitleAction();
                 break;
             case GameState.Prepare:
                 //StartCoroutine(PrepareCoroutine());
@@ -64,38 +69,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Startになったときの処理
-    void StartAction()
+    // Startになったときの変更時処理
+    void TitleAction()
     {
+        SetCurrentState(GameState.InGame);//とりあえず、開始後すぐゲーム実行
     }
 
-    // Prepareになったときの処理
+    // Prepareになったときの変更時処理
+    void PrepareCoroutine() //なにこれ。コールチンってなに？
     //IEnumerator PrepareCoroutine() //なにこれ。コールチンってなに？
-    //{
-    //    //label.text = "3";
-    //    //yield return new WaitForSeconds(1);
-    //    //label.text = "2";
-    //    //yield return new WaitForSeconds(1);
-    //    //label.text = "1";
-    //    //yield return new WaitForSeconds(1);
-    //    //label.text = "";
-    //    //SetCurrentState(GameState.InGame);
-    //}
-    // InGameになったときの処理
+    {
+        //label.text = "3";
+        //yield return new WaitForSeconds(1);
+        //label.text = "2";
+        //yield return new WaitForSeconds(1);
+        //label.text = "1";
+        //yield return new WaitForSeconds(1);
+        //label.text = "";
+        //SetCurrentState(GameState.InGame);
+    }
+
+    // InGameになったときの変更時処理
     void InGameAction()
     {
-        label.text = "ゲーム中";
+        //label.text = "ゲーム中";
 
     }
-    // Deadになったときの処理
+
+    // Deadになったときの変更時処理
     void DeadAction()
     {
     }
-    // Resultになったときの処理
+
+    // Resultになったときの変更時処理
     void EndAction()
     {
     }
 
+    //GameStateごとの常時実行処理
     private void Update()
     {
         switch (currentGameState)
@@ -109,6 +120,10 @@ public class GameManager : MonoBehaviour
             case GameState.InGame:
                 //タイムを加算
                 gm_time += Time.deltaTime;
+                //UI
+                _uiTime.text = "タイム: " + gm_time.ToString();
+                //_uiTime.text = "こんにちは";
+
                 break;
             case GameState.Dead:
                 
