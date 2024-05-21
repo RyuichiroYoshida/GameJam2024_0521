@@ -155,7 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 1
-  _uiTime: {fileID: 728870706}
   _playerManager: {fileID: 41954353}
   _uiManager: {fileID: 41954354}
   gm_time: 0
@@ -190,6 +189,7 @@ MonoBehaviour:
   LaneState: 0
   LaneWide: 1
   PosBase: {fileID: 443971430}
+  _thisPlayer: {fileID: 0}
   ObjLeft: {fileID: 7656986699493467799, guid: 0bd14be00ddd34947977c3c86d7e6778, type: 3}
   ObjMiddle: {fileID: 49022588641956910, guid: ff1f632dd5df5c24d8406673451aab86, type: 3}
   ObjRight: {fileID: 7656986699493467799, guid: 5affc6d5370b16e48a2c1b19aebe3fee, type: 3}

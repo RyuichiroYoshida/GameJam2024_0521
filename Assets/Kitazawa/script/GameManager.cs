@@ -13,19 +13,24 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    // これ
-    public static GameManager thisInstance;
-    // 現在のゲームステータス
+    // シングルトン
+    private static GameManager thisInstance;
+    /// <summary>
+    /// 現在のゲーム状態。
+    /// 変更する場合、以下の関数を使うこと。<br/>
+    /// <b>GameManager.SetGameState(GameState state)</b>
+    /// </summary>
     public GameState currentGameState;
 
     //アサイン
-    [SerializeField] Text _uiTime; //後で消す
-    [SerializeField] ScriptableObject _playerManager;
-    [SerializeField] ScriptableObject _uiManager;
+    [SerializeField] PlayerManager _playerManager;
+    [SerializeField] UIManager _uiManager;
     //Managerをもっと増やす
 
     // 変数の定義
+    /// <summary>タイム</summary>
     public float gm_time;
+    /// <summary>スコア</summary>
     public int gm_score;
     Text label;
 
@@ -36,18 +41,19 @@ public class GameManager : MonoBehaviour
         gm_time = 0.0f;
         gm_score = 0;
         //初めのGameState
-        SetCurrentState(GameState.Title);
+        SetGameState(GameState.Title);
     }
 
-
-    // 外からこのメソッドを使って状態を変更
-    public void SetCurrentState(GameState state)
+    /// <summary>
+    /// 現在のゲーム状態(GameState)を変更する。
+    /// </summary>
+    public void SetGameState(GameState state)
     {
         currentGameState = state;
         OnGameStateChanged(currentGameState);
     }
 
-    // 状態が変わったら変更時メソッドを実行
+    // 状態が変わった時、Changed処理を実行
     void OnGameStateChanged(GameState state)
     {
         switch (state)
@@ -69,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // //シーンごとにUpdate
+    //ゲーム状態ごにUpdateを実行
     public void Update()
     {
         switch (currentGameState)
@@ -92,17 +98,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Titleになったときの変更時
+    // Title
     void TitleChanged()
     {
-        //SetCurrentState(GameState.InGame);//とりあえず、開始後すぐゲーム実行
+        //SetGameState(GameState.InGame);//とりあえず、開始後すぐゲーム実行
     }
     void TitleUpdate()
     {
         
     }
 
-    // InGameになったときの変更時
+    // InGame
     void InGameChanged()
     {
         //label.text = "ゲーム中";
@@ -116,7 +122,7 @@ public class GameManager : MonoBehaviour
         _uiManager.InGameText(gm_time, gm_score);
     }
 
-    // Deadになったときの変更時処理
+    // Dead
     void DeadChanged()
     {
     }
@@ -125,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Resultになったときの変更時処理
+    // Result
     void ResultChanged()
     {
         Debug.Log("ゲーム時間: " + gm_time);
