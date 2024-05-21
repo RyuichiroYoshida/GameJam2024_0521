@@ -18,7 +18,8 @@ public class Player_move : MonoBehaviour
         x = dx * 0.1f;
         transform.Translate(x, 0.0F, 0, 0F);
     }
-    void OnCollisionEnter(Collision collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("“–‚½‚Á‚Ä‚¢‚é");
     }
