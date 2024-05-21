@@ -15,17 +15,18 @@ public class GameManager : MonoBehaviour
 {
     // これ
     public static GameManager thisInstance;
-
     // 現在のゲームステータス
     public GameState currentGameState;
 
     //アサイン
     [SerializeField] Text _uiTime; //後で消す
-    [SerializeField] PlayerManager _playerManager;
+    [SerializeField] ScriptableObject _playerManager;
+    [SerializeField] ScriptableObject _uiManager;
     //Managerをもっと増やす
 
     // 変数の定義
     public float gm_time;
+    public int gm_score;
     Text label;
 
     void Awake()
@@ -33,17 +34,11 @@ public class GameManager : MonoBehaviour
         //初期化
         thisInstance = this;
         gm_time = 0.0f;
+        gm_score = 0;
         //初めのGameState
         SetCurrentState(GameState.Title);
-
-        //GetComporment
-        _playerManager = GetComponent<PlayerManager>();
     }
 
-    public void Start()
-    {
-
-    }
 
     // 外からこのメソッドを使って状態を変更
     public void SetCurrentState(GameState state)
@@ -114,7 +109,11 @@ public class GameManager : MonoBehaviour
     }
     void InGameUpdate()
     {
+        //経過時間の管理
+        gm_time += Time.deltaTime;
+        //各Updateの呼び出し
         _playerManager.GM_Update();
+        _uiManager.InGameText(gm_time, gm_score);
     }
 
     // Deadになったときの変更時処理
@@ -130,6 +129,7 @@ public class GameManager : MonoBehaviour
     void ResultChanged()
     {
         Debug.Log("ゲーム時間: " + gm_time);
+        _uiManager.EndText(gm_score);
     }
     void ResultUpdate()
     {
