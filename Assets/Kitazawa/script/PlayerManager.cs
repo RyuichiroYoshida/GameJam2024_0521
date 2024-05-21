@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
+using static UnityEngine.Mathf;
 
 public enum PlayerLaneState
 {
@@ -11,14 +14,17 @@ public enum PlayerLaneState
 public class PlayerManager : MonoBehaviour
 {
     //パラメーター
-    [SerializeField] GameObject PlayerLeft;
-    [SerializeField] GameObject PlayerMiddle;
-    [SerializeField] GameObject PlayerRight;
-    public PlayerLaneState PlayLane;
+    public PlayerLaneState LaneState; //レーン
+    [SerializeField] float LaneWide = 1.0f; //左右移動の振り幅
+    [SerializeField] GameObject PosBase; //位置の基準
 
     //変数の定義
-    //bool keyDown_Hrzn = false;
-    //float last_KeyDown_Hrzn;
+    GameObject _player;
+
+    //アサイン
+    [SerializeField] GameObject ObjLeft;
+    [SerializeField] GameObject ObjMiddle;
+    [SerializeField] GameObject ObjRight;
     void GM_Start()
     {
         
@@ -30,15 +36,28 @@ public class PlayerManager : MonoBehaviour
         //KeyがDownした時のみ、
         if (Input.GetKeyDown(KeyCode.D))//右
         {
-            PlayLane += 1;//レーンを変更
+            LaneState += 1;//レーンを変更
+
         }
         if (Input.GetKeyDown(KeyCode.A))//左
         {
-            PlayLane -= 1;//レーンを変更
+            LaneState -= 1;//レーンを変更
+        }
+
+        //レーンがでかすぎたら、範囲内に納める
+        int iLane = (int)LaneState;
+        if (iLane >= 2)
+        {
+            LaneState = PlayerLaneState.Right;
+        }
+        else if (iLane <= -1) 
+        {
+            LaneState = PlayerLaneState.Left;
         }
 
         //レーンに合わせて、変更
-        switch (PlayLane)
+        Destroy(_player);
+        switch (LaneState)
         {
             case PlayerLaneState.Left:
                 LaneLeft();
@@ -52,18 +71,31 @@ public class PlayerManager : MonoBehaviour
             default:
                 break;
         }
-        void LaneLeft()
-        {
-
-        }
-        void LaneMiddle()
-        { 
-
-        }
-        void LaneRight()
-        {
-
-        }
+    }
+    void LaneLeft()
+    {
+        UnityEngine.Vector2 pos = PosBase.transform.position;
+        pos[0] -= LaneWide;
+        _player = Instantiate(ObjLeft, pos, PosBase.transform.rotation);
+        //プレイヤーの設定
+        SpriteRenderer spr = _player.GetComponent<SpriteRenderer>();
+        spr.sortingOrder = 1;
+    }
+    void LaneMiddle()
+    {
+        _player = Instantiate(ObjMiddle, PosBase.transform.position, PosBase.transform.rotation);
+        //プレイヤーの設定
+        SpriteRenderer spr = _player.GetComponent<SpriteRenderer>();
+        spr.sortingOrder = 1;
+    }
+    void LaneRight()
+    {
+        UnityEngine.Vector2 pos = PosBase.transform.position;
+        pos[0] += LaneWide;
+        _player = Instantiate(ObjRight, pos, PosBase.transform.rotation);
+        //プレイヤーの設定
+        SpriteRenderer spr = _player.GetComponent<SpriteRenderer>();
+        spr.sortingOrder = 1;
     }
 
     //当たり判定
