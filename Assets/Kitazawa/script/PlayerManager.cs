@@ -14,7 +14,7 @@ public enum PlayerLaneState
 public class PlayerManager : MonoBehaviour
 {
     //パラメーター
-    [SerializeField] int _maxHealth = 3; //ヘルス
+    [SerializeField] int _maxHealth = 300; //ヘルス
     public int _health;
     public PlayerLaneState _laneState; //レーン
     [SerializeField] float _laneWide = 1.0f; //左右移動の振り幅
@@ -81,6 +81,7 @@ public class PlayerManager : MonoBehaviour
         //if (_health <= 0)
         //{
         //    _gameManager.SetGameState(GameState.Dead);
+        //    Debug.Log("死亡判定");
         //}
     }
     void LaneLeft()

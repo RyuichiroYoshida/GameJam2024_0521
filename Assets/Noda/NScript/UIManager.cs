@@ -40,8 +40,10 @@ public class UIManager : MonoBehaviour
         _hpText.text = "HP" + hp.ToString();
         if(hp <= 0)
         {
+            Debug.Log("I‚í‚è");
             ChangeScene changeScene = FindObjectOfType<ChangeScene>();
-            changeScene.GameOverFade();
+            changeScene.changeScene();
+
         }
     }
 

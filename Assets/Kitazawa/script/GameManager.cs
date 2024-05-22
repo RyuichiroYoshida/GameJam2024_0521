@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _InGameOb = null;
     [SerializeField] InGameManager _InGameSc = null;
     //[SerializeField] Dead _Dead = null;
-    //[SerializeField] Result _Result = null;
+    [SerializeField] GameObject _ResultOb = null;
+    [SerializeField] ResultManager _ResultSc = null;
     //Managerをもっと増やす
 
     // 変数の定義
@@ -123,19 +124,23 @@ public class GameManager : MonoBehaviour
     // Dead
     void DeadChanged()
     {
+        Debug.Log("Chandged");
     }
     void DeadUpdate()
     {
-
+        SetGameState(GameState.Result);//すぐにリザルトに移行
+        Debug.Log("Update");
     }
 
     // Result
     void ResultChanged()
     {
+        _ResultOb = GameObject.Find("Result");
+        _ResultSc = _ResultOb.GetComponent<ResultManager>();
     }
     void ResultUpdate()
     {
-
+       _ResultSc.GmUpdate();
     }
 }
 
