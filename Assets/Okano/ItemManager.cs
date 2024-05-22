@@ -7,5 +7,6 @@ public class ItemManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         FieldManager.Instance.AddSpeed(_speedValue);
+        Destroy(gameObject);
     }
 }
