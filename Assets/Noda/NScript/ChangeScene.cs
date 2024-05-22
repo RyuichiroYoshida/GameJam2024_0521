@@ -9,10 +9,20 @@ public class ChangeScene : MonoBehaviour
     [SerializeField] GameObject _ui = null;
     [SerializeField] UnityEngine.UI.Image image;
     [SerializeField] bool _inGame;
+    GameManager _gameManager;
 
     public void Start()
     {
+        _gameManager = FindObjectOfType<GameManager>();
         this.image.DOFade(endValue: 0f, duration: 3f);
+        if(_inGame)
+        {
+            _gameManager.SetGameState(GameState.InGame);
+        }
+        else
+        {
+            _gameManager.SetGameState(GameState.Title);
+        }
     }
     public void SceneOut()
     {
@@ -23,9 +33,9 @@ public class ChangeScene : MonoBehaviour
 
     public void changeScene()
     {
-        if(_inGame == true)
-            SceneManager.LoadScene("InGame");
         if(_inGame == false)
+            SceneManager.LoadScene("InGame");
+        if(_inGame == true)
             SceneManager.LoadScene("Start");
     }
 }
