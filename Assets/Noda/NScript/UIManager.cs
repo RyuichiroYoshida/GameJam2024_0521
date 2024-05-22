@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 { 
     private GameManager _gameManager;
-
+    [SerializeField] GameObject _hp = null;
     [SerializeField] GameObject _timeObject = null;
     [SerializeField] GameObject _scoreObject = null;
     [SerializeField] GameObject _resultObject = null;
@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     Text _timeText;
     Text _scoreText;
     Text _resultText;
+    Text _hpText;
 
     private float _score;
     void Start()
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
         _timeText = _timeObject.GetComponent<Text>();
         _scoreText = _scoreObject.GetComponent<Text>();
         _resultText = _resultObject.GetComponent<Text>();
+        _hpText = _hp.GetComponent<Text>();
     }
 
     public void InGameText(float time, int score)
@@ -33,8 +35,14 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score:" + score.ToString("000000");
     }
 
+    public void hpText(int hp)
+    {
+        _hpText.text = hp.ToString();
+    }
+
     public void ResultText(int result)
     {
+        _hp.SetActive(false);
         _timeObject.SetActive(false);
         _scoreObject.SetActive(false);
         _resultObject.SetActive(true);
