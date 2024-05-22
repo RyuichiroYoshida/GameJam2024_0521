@@ -25,21 +25,21 @@ public class UIManager : MonoBehaviour
         _resultText = _resultObject.GetComponent<Text>();
     }
 
-    public void InGameText(float _time, int _score)
+    public void InGameText(float time, int score)
     {
         if (_gameManager.currentGameState == GameState.InGame)
         {
-            _timeText.text = "Time:" + _time.ToString("00");
-            _scoreText.text = "Score:" + _score.ToString("000000");
+            _timeText.text = "Time:" + time.ToString("00");
+            _scoreText.text = "Score:" + score.ToString("000000");
         }
     }
 
-    public void EndText(int _result)
+    public void EndText(int result)
     {
         if (_gameManager.currentGameState == GameState.Result)
         {
             _resultObject.SetActive(true);
-            _resultText.text = "Result:" + _result.ToString("000000");
+            _resultText.text = "Result:" + result.ToString("000000");
             _timeObject.SetActive(false);
             _scoreObject.SetActive(false);
         }
