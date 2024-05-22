@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
 
     public void hpText(int hp)
     {
-        _hpText.text = hp.ToString();
+        _hpText.text = "HP" + hp.ToString();
     }
 
     public void ResultText(int result)
