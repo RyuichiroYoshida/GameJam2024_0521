@@ -38,4 +38,9 @@ public class ChangeScene : MonoBehaviour
         if(_inGame == true)
             SceneManager.LoadScene("Start");
     }
+
+    public void GameOverFade()
+    {
+        this.image.DOFade(endValue: 1f, duration: 1f);
+    }
 }
