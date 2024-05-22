@@ -33,8 +33,10 @@ public class InGameManager : MonoBehaviour
 
     public void GmUpdate()
     {
+        //ほかメソッドを回す
         _playerManager.GmUpdate();
         _uiManager.InGameText(Gm_time, Gm_score);
+        _uiManager.hpText(_playerManager._health);
 
         //経過時間の管理
         Gm_time += Time.deltaTime;
