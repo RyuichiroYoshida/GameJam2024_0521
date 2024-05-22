@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,8 +24,8 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
 
     //アサイン
-    [SerializeField] PlayerManager _playerManager;
-    [SerializeField] UIManager _uiManager;
+    [SerializeField] PlayerManager _playerManager = null;
+    [SerializeField] UIManager _uiManager = null;
     //Managerをもっと増やす
 
     // 変数の定義
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         gm_score = 0;
         //初めのGameState
         SetGameState(GameState.Title);
+        DontDestroyOnLoad(this.GameObject());
     }
 
     /// <summary>
@@ -105,7 +107,7 @@ public class GameManager : MonoBehaviour
     }
     void TitleUpdate()
     {
-        
+     
     }
 
     // InGame
