@@ -37,7 +37,12 @@ public class UIManager : MonoBehaviour
 
     public void hpText(int hp)
     {
-        _hpText.text = hp.ToString();
+        _hpText.text = "HP" + hp.ToString();
+        if(hp <= 0)
+        {
+            ChangeScene changeScene = FindObjectOfType<ChangeScene>();
+            changeScene.GameOverFade();
+        }
     }
 
     public void ResultText(int result)
