@@ -14,20 +14,20 @@ public enum PlayerLaneState
 public class PlayerManager : MonoBehaviour
 {
     //パラメーター
-    public int maxHealth = 3; //ヘルス
+    [SerializeField] int maxHealth = 3; //ヘルス
     public int Health;
     public PlayerLaneState LaneState; //レーン
-    [SerializeField] float LaneWide = 1.0f; //左右移動の振り幅
-    [SerializeField] GameObject PosBase; //位置の基準
+    [SerializeField] float laneWide = 1.0f; //左右移動の振り幅
+    [SerializeField] GameObject posBase = null; //位置の基準
     [SerializeField] string tagObstancle = "Obstancle";//障害物と判断するタグ
 
     //変数の定義
     GameObject _thisPlayer;
 
     //アサイン
-    [SerializeField] GameObject ObjLeft;
-    [SerializeField] GameObject ObjMiddle;
-    [SerializeField] GameObject ObjRight;
+    [SerializeField] GameObject _objLeft = null;
+    [SerializeField] GameObject _objMiddle = null;
+    [SerializeField] GameObject _objRight = null;
     GameManager _gameManager;
 
     void Start()
@@ -85,25 +85,25 @@ public class PlayerManager : MonoBehaviour
     }
     void LaneLeft()
     {
-        UnityEngine.Vector2 pos = PosBase.transform.position;
-        pos[0] -= LaneWide;
-        _thisPlayer = Instantiate(ObjLeft, pos, PosBase.transform.rotation);
+        UnityEngine.Vector2 pos = posBase.transform.position;
+        pos[0] -= laneWide;
+        _thisPlayer = Instantiate(_objLeft, pos, posBase.transform.rotation);
         //プレイヤーの設定
         SpriteRenderer spr = _thisPlayer.GetComponent<SpriteRenderer>();
         spr.sortingOrder = 1;
     }
     void LaneMiddle()
     {
-        _thisPlayer = Instantiate(ObjMiddle, PosBase.transform.position, PosBase.transform.rotation);
+        _thisPlayer = Instantiate(_objMiddle, posBase.transform.position, posBase.transform.rotation);
         //プレイヤーの設定
         SpriteRenderer spr = _thisPlayer.GetComponent<SpriteRenderer>();
         spr.sortingOrder = 1;
     }
     void LaneRight()
     {
-        UnityEngine.Vector2 pos = PosBase.transform.position;
-        pos[0] += LaneWide;
-        _thisPlayer = Instantiate(ObjRight, pos, PosBase.transform.rotation);
+        UnityEngine.Vector2 pos = posBase.transform.position;
+        pos[0] += laneWide;
+        _thisPlayer = Instantiate(_objRight, pos, posBase.transform.rotation);
         //プレイヤーの設定
         SpriteRenderer spr = _thisPlayer.GetComponent<SpriteRenderer>();
         spr.sortingOrder = 1;
