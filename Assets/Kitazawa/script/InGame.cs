@@ -13,10 +13,21 @@ public class InGame : MonoBehaviour
     /// <summary>スコア</summary>
     public int Gm_score;
 
+    //音楽
+    //[SerializeField] public AudioClip audioClip1 = null;
+    //[SerializeField] public AudioClip audioClip2 = null;
+    //[SerializeField] public AudioClip audioClip3 = null;
+    //private AudioSource audioSource;
+
     public void GmChanged()
     {
         Gm_time = 0.0f;
         Gm_score = 0;
+
+        //音楽を流す
+        //audioSource = gameObject.GetComponent<AudioSource>();
+        //audioSource.clip = audioClip1;
+        //audioSource.Play();
     }
 
     public void GmUpdate()
