@@ -13,13 +13,13 @@ public class InGame : MonoBehaviour
     /// <summary>ÉXÉRÉA</summary>
     public int Gm_score;
 
-    void GmChanged()
+    public void GmChanged()
     {
         Gm_time = 0.0f;
         Gm_score = 0;
     }
 
-    void GmUpdate()
+    public void GmUpdate()
     {
         _playerManager.GmUpdate();
         _uiManager.InGameText(Gm_time, Gm_score);
