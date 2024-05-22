@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     /// 変更する場合、以下の関数を使うこと。<br/>
     /// <b>GameManager.SetGameState(GameState state)</b>
     /// </summary>
-    private GameState _currentGameState;
+    [SerializeField] private GameState _currentGameState;
 
     //アサイン
     [SerializeField] GameObject _InGameOb = null;
