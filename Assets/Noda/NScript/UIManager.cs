@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
     public void InGameText(float time, int score)
     {
         _resultCanvas.SetActive(false);
-        _timeText.text = "Time:" + time.ToString("00");
+        _timeText.text = "Time:" + time.ToString("0000");
         _scoreText.text = "Score:" + score.ToString("000000");
     }
 
