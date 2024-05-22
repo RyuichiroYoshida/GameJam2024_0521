@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class InGame : MonoBehaviour
+public class InGameManager : MonoBehaviour
 {
     [SerializeField] PlayerManager _playerManager = null;
     [SerializeField] UIManager _uiManager = null;
@@ -14,9 +14,9 @@ public class InGame : MonoBehaviour
     public int Gm_score;
 
     //‰¹Šy
-    //[SerializeField] public AudioClip audioClip1 = null;
-    //[SerializeField] public AudioClip audioClip2 = null;
-    //private AudioSource audioSource;
+    [SerializeField] public AudioClip _audioClip1 = null;
+    [SerializeField] public AudioClip _audioClip2 = null;
+    private AudioSource[] _audioSource;
 
     public void GmChanged()
     {
@@ -24,8 +24,11 @@ public class InGame : MonoBehaviour
         Gm_score = 0;
 
         //‰¹Šy‚ð—¬‚·
-        //audioSource.clip = audioClip1;
-        //audioSource.Play();
+        _audioSource = gameObject.GetComponents<AudioSource>();
+        _audioSource[0].clip = _audioClip1;
+        _audioSource[1].clip = _audioClip2;
+        _audioSource[0].Play();
+        _audioSource[1].Play();
     }
 
     public void GmUpdate()
