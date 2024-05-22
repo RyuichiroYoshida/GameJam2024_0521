@@ -131,13 +131,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2003875574600365468, guid: f754c4c2066c477428e19c1e65ef7540, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -938.68
+      objectReference: {fileID: 0}
     - target: {fileID: 2850156686764971681, guid: f754c4c2066c477428e19c1e65ef7540, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 415.93262
+      value: 415.73
       objectReference: {fileID: 0}
     - target: {fileID: 2850156686764971681, guid: f754c4c2066c477428e19c1e65ef7540, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 934.06177
+      value: 935.55
       objectReference: {fileID: 0}
     - target: {fileID: 2850156686764971681, guid: f754c4c2066c477428e19c1e65ef7540, type: 3}
       propertyPath: m_LocalPosition.z
@@ -419,7 +423,7 @@ MonoBehaviour:
   - {fileID: 2236610207996379375, guid: 87613eececea14648b18b1db152329c8, type: 3}
   - {fileID: 5764010163918444399, guid: 6b483378e0344cd438e77610dd14c1bd, type: 3}
   - {fileID: 4983966861956431743, guid: d0274c550fc584b4f8e95cc99cecec18, type: 3}
-  _scrollSpeed: 0.2
+  _scrollSpeed: 0.1
   _randomField: 1
 --- !u!4 &602378043
 Transform:
@@ -825,12 +829,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a59aba94cd21c742960297995b9a5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  Health: 0
-  LaneState: 0
-  laneWide: 1
-  posBase: {fileID: 167560499}
-  tagObstancle: Obstancle
+  _maxHealth: 3
+  _health: 0
+  _laneState: 0
+  _laneWide: 1
+  _posBase: {fileID: 167560499}
+  _tagObstancle: Obstancle
   _objLeft: {fileID: 7656986699493467799, guid: 0bd14be00ddd34947977c3c86d7e6778, type: 3}
   _objMiddle: {fileID: 49022588641956910, guid: ff1f632dd5df5c24d8406673451aab86, type: 3}
   _objRight: {fileID: 7656986699493467799, guid: 5affc6d5370b16e48a2c1b19aebe3fee, type: 3}
