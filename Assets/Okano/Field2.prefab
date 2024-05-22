@@ -453,7 +453,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -720,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8127954945293902580, guid: faad7a2bd39206d4ba2f0e1b90ced322, type: 3}
       propertyPath: m_GravityScale
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2883569752859638587, guid: faad7a2bd39206d4ba2f0e1b90ced322, type: 3}
