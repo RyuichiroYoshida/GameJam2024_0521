@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class InGame : MonoBehaviour
 {
@@ -25,5 +26,7 @@ public class InGame : MonoBehaviour
 
         //åoâﬂéûä‘ÇÃä«óù
         Gm_time += Time.deltaTime;
+
+        _uiManager.InGameText(Gm_time, Gm_score);
     }
 }

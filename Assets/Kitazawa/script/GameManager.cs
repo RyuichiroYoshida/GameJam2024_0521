@@ -129,8 +129,6 @@ public class GameManager : MonoBehaviour
     // Result
     void ResultChanged()
     {
-        Debug.Log("ƒQ[ƒ€ŠÔ: " + Gm_time);
-        _uiManager.EndText(Gm_score);
     }
     void ResultUpdate()
     {
