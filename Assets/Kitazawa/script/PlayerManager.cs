@@ -14,12 +14,12 @@ public enum PlayerLaneState
 public class PlayerManager : MonoBehaviour
 {
     //パラメーター
-    [SerializeField] int maxHealth = 3; //ヘルス
-    public int Health;
-    public PlayerLaneState LaneState; //レーン
-    [SerializeField] float laneWide = 1.0f; //左右移動の振り幅
-    [SerializeField] GameObject posBase = null; //位置の基準
-    [SerializeField] string tagObstancle = "Obstancle";//障害物と判断するタグ
+    [SerializeField] int _maxHealth = 3; //ヘルス
+    public int _health;
+    public PlayerLaneState _laneState; //レーン
+    [SerializeField] float _laneWide = 1.0f; //左右移動の振り幅
+    [SerializeField] GameObject _posBase = null; //位置の基準
+    [SerializeField] string _tagObstancle = "Obstancle";//障害物と判断するタグ
 
     //変数の定義
     GameObject _thisPlayer;
@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        Health = maxHealth;
+        _health = _maxHealth;
         _gameManager = GetComponent<GameManager>();
     }
 
@@ -42,27 +42,27 @@ public class PlayerManager : MonoBehaviour
         //KeyがDownした時のみ、レーンを移動
         if (Input.GetKeyDown(KeyCode.D))//右
         {
-            LaneState += 1;//レーンを変更
+            _laneState += 1;//レーンを変更
         }
         if (Input.GetKeyDown(KeyCode.A))//左
         {
-            LaneState -= 1;//レーンを変更
+            _laneState -= 1;//レーンを変更
         }
 
         //レーンがでかすぎたら、範囲内に納める
-        int iLane = (int)LaneState;
+        int iLane = (int)_laneState;
         if (iLane >= 2)
         {
-            LaneState = PlayerLaneState.Right;
+            _laneState = PlayerLaneState.Right;
         }
         else if (iLane <= -1) 
         {
-            LaneState = PlayerLaneState.Left;
+            _laneState = PlayerLaneState.Left;
         }
 
         //レーンに合わせて、インスタンシェントを作る
         Destroy(_thisPlayer);
-        switch (LaneState)
+        switch (_laneState)
         {
             case PlayerLaneState.Left:
                 LaneLeft();
@@ -78,32 +78,32 @@ public class PlayerManager : MonoBehaviour
         }
 
         //死亡判定
-        if (Health <= 0)
+        if (_health <= 0)
         {
             _gameManager.SetGameState(GameState.Dead);
         }
     }
     void LaneLeft()
     {
-        UnityEngine.Vector2 pos = posBase.transform.position;
-        pos[0] -= laneWide;
-        _thisPlayer = Instantiate(_objLeft, pos, posBase.transform.rotation);
+        UnityEngine.Vector2 pos = _posBase.transform.position;
+        pos[0] -= _laneWide;
+        _thisPlayer = Instantiate(_objLeft, pos, _posBase.transform.rotation);
         //プレイヤーの設定
         SpriteRenderer spr = _thisPlayer.GetComponent<SpriteRenderer>();
         spr.sortingOrder = 1;
     }
     void LaneMiddle()
     {
-        _thisPlayer = Instantiate(_objMiddle, posBase.transform.position, posBase.transform.rotation);
+        _thisPlayer = Instantiate(_objMiddle, _posBase.transform.position, _posBase.transform.rotation);
         //プレイヤーの設定
         SpriteRenderer spr = _thisPlayer.GetComponent<SpriteRenderer>();
         spr.sortingOrder = 1;
     }
     void LaneRight()
     {
-        UnityEngine.Vector2 pos = posBase.transform.position;
-        pos[0] += laneWide;
-        _thisPlayer = Instantiate(_objRight, pos, posBase.transform.rotation);
+        UnityEngine.Vector2 pos = _posBase.transform.position;
+        pos[0] += _laneWide;
+        _thisPlayer = Instantiate(_objRight, pos, _posBase.transform.rotation);
         //プレイヤーの設定
         SpriteRenderer spr = _thisPlayer.GetComponent<SpriteRenderer>();
         spr.sortingOrder = 1;
@@ -112,11 +112,11 @@ public class PlayerManager : MonoBehaviour
     //当たり判定
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.tag == tagObstancle)
-        //{
+        if (collision.gameObject.tag == _tagObstancle)
+        {
             Debug.Log("当たっている");
-            Health -= 1;
-        //}
+            _health -= 1;
+        }
 
     }
 }
