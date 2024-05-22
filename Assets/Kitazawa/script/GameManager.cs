@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     //アサイン
     [SerializeField] PlayerManager _playerManager = null;
     [SerializeField] UIManager _uiManager = null;
+    [SerializeField] InGame _InGame = null;
     //Managerをもっと増やす
 
     // 変数の定義
@@ -120,8 +121,9 @@ public class GameManager : MonoBehaviour
         //経過時間の管理
         Gm_time += Time.deltaTime;
         //各Updateの呼び出し
-        _playerManager.GM_Update();
+        _playerManager.GmUpdate();
         _uiManager.InGameText(Gm_time, Gm_score);
+        _InGame.GmUpdate();
     }
 
     // Dead

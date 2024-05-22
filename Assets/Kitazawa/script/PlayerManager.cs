@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     //
-    public void GM_Update()
+    public void GmUpdate()
     {
         //Key‚ªDown‚µ‚½‚Ì‚İAƒŒ[ƒ“‚ğˆÚ“®
         if (Input.GetKeyDown(KeyCode.D))//‰E
