@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject _timeObject = null;
     [SerializeField] GameObject _scoreObject = null;
     [SerializeField] GameObject _resultObject = null;
+    [SerializeField] GameObject _resultCanvas = null;
 
     Text _timeText;
     Text _scoreText;
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     public void InGameText(float time, int score)
     {
+        _resultCanvas.SetActive(false);
         _timeText.text = "Time:" + time.ToString("00");
         _scoreText.text = "Score:" + score.ToString("000000");
     }

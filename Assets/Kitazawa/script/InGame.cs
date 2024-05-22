@@ -27,6 +27,5 @@ public class InGame : MonoBehaviour
         //Œo‰ßŠÔ‚ÌŠÇ—
         Gm_time += Time.deltaTime;
 
-        _uiManager.InGameText(Gm_time, Gm_score);
     }
 }
