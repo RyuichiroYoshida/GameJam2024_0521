@@ -78,10 +78,10 @@ public class PlayerManager : MonoBehaviour
         }
 
         //Ž€–S”»’è
-        if (_health <= 0)
-        {
-            _gameManager.SetGameState(GameState.Dead);
-        }
+        //if (_health <= 0)
+        //{
+        //    _gameManager.SetGameState(GameState.Dead);
+        //}
     }
     void LaneLeft()
     {
@@ -107,16 +107,5 @@ public class PlayerManager : MonoBehaviour
         //ƒvƒŒƒCƒ„[‚ÌÝ’è
         SpriteRenderer spr = _thisPlayer.GetComponent<SpriteRenderer>();
         spr.sortingOrder = 1;
-    }
-
-    //“–‚½‚è”»’è
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == _tagObstancle)
-        {
-            Debug.Log("“–‚½‚Á‚Ä‚¢‚é");
-            _health -= 1;
-        }
-
     }
 }

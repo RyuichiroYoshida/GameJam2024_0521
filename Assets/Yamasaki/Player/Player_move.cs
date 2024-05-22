@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Player_move : MonoBehaviour
 {
-    // Start is called before the first frame update
+    PlayerManager _playerManager;
     void Start()
     {
-        
+        _playerManager = FindObjectOfType<PlayerManager>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        float dx= Input.GetAxis("Horizontal") ;
-        float x = 0.0F;
-        x = dx * 0.1f;
-        transform.Translate(x, 0.0F, 0, 0F);
-    }
 
+    //“–‚½‚è”»’è
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("“–‚½‚Á‚Ä‚¢‚é");
+        //if (collision.gameObject.tag == _tagObstancle)
+        //{
+        Debug.Log("“–‚½‚Á‚Ä‚¢‚é‚æ");
+        _playerManager._health -= 1;
+        //}
+
     }
 }
