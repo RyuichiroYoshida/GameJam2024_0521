@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     Text _resultText;
 
     private float _score;
-    void start()
+    void Start()
     {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
 

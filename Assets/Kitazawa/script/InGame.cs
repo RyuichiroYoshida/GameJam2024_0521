@@ -14,10 +14,10 @@ public class InGame : MonoBehaviour
     public int Gm_score;
 
     //‰¹Šy
-    [SerializeField] public AudioClip audioClip1 = null;
-    [SerializeField] public AudioClip audioClip2 = null;
-    [SerializeField] public AudioClip audioClip3 = null;
-    private AudioSource audioSource;
+    //[SerializeField] public AudioClip audioClip1 = null;
+    //[SerializeField] public AudioClip audioClip2 = null;
+    //[SerializeField] public AudioClip audioClip3 = null;
+    //private AudioSource audioSource;
 
     public void GmChanged()
     {
@@ -25,9 +25,9 @@ public class InGame : MonoBehaviour
         Gm_score = 0;
 
         //‰¹Šy‚ð—¬‚·
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioClip1;
-        audioSource.Play();
+        //audioSource = gameObject.GetComponent<AudioSource>();
+        //audioSource.clip = audioClip1;
+        //audioSource.Play();
     }
 
     public void GmUpdate()
