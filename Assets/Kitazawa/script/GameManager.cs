@@ -24,24 +24,18 @@ public class GameManager : MonoBehaviour
     private GameState _currentGameState;
 
     //アサイン
-    [SerializeField] PlayerManager _playerManager = null;
-    [SerializeField] UIManager _uiManager = null;
     [SerializeField] InGame _InGame = null;
+    //[SerializeField] Dead _Dead = null;
+    //[SerializeField] Result _Result = null;
     //Managerをもっと増やす
 
     // 変数の定義
-    /// <summary>タイム</summary>
-    public float Gm_time;
-    /// <summary>スコア</summary>
-    public int Gm_score;
     Text label;
 
     void Awake()
     {
         //初期化
         _thisInstance = this;
-        Gm_time = 0.0f;
-        Gm_score = 0;
         //初めのGameState
         SetGameState(GameState.Title);
         DontDestroyOnLoad(this.GameObject());
@@ -115,14 +109,11 @@ public class GameManager : MonoBehaviour
     void InGameChanged()
     {
         //label.text = "ゲーム中";
+        _InGame.GmChanged();
     }
     void InGameUpdate()
     {
-        //経過時間の管理
-        Gm_time += Time.deltaTime;
         //各Updateの呼び出し
-        _playerManager.GmUpdate();
-        _uiManager.InGameText(Gm_time, Gm_score);
         _InGame.GmUpdate();
     }
 
