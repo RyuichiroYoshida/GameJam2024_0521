@@ -478,12 +478,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2681458139010587452, guid: 790ae667b9257fa4aa63029a936a25ba, type: 3}
+      propertyPath: _ui
+      value: 
+      objectReference: {fileID: 1244372110}
+    - target: {fileID: 2681458139010587452, guid: 790ae667b9257fa4aa63029a936a25ba, type: 3}
       propertyPath: _start
       value: 
       objectReference: {fileID: 1244372110}
+    - target: {fileID: 2681458139010587452, guid: 790ae667b9257fa4aa63029a936a25ba, type: 3}
+      propertyPath: _inGame
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3207271453057606059, guid: 790ae667b9257fa4aa63029a936a25ba, type: 3}
       propertyPath: m_Color.a
-      value: 0.039215688
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3207271453057606059, guid: 790ae667b9257fa4aa63029a936a25ba, type: 3}
       propertyPath: m_Color.b
