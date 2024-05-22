@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     //アサイン
     [SerializeField] GameObject _InGameOb = null;
-    [SerializeField] InGame _InGameSc = null;
+    [SerializeField] InGameManager _InGameSc = null;
     //[SerializeField] Dead _Dead = null;
     //[SerializeField] Result _Result = null;
     //Managerをもっと増やす
@@ -99,19 +99,19 @@ public class GameManager : MonoBehaviour
     // Title
     void TitleChanged()
     {
-        //SetGameState(GameState.InGame);//とりあえず、開始後すぐゲーム実行
+        //SetGameState(GameState.InGameManager);//とりあえず、開始後すぐゲーム実行
     }
     void TitleUpdate()
     {
      
     }
 
-    // InGame
+    // InGameManager
     void InGameChanged()
     {
         //label.text = "ゲーム中";
-        _InGameOb = GameObject.Find("InGame");
-        _InGameSc = _InGameOb.GetComponent<InGame>();
+        _InGameOb = GameObject.Find("InGameManager");
+        _InGameSc = _InGameOb.GetComponent<InGameManager>();
         _InGameSc.GmChanged();
     }
     void InGameUpdate()
