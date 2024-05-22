@@ -15,7 +15,7 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     // シングルトン
-    private static GameManager _thisInstance = null;
+    private static GameManager _thisInstance;
     /// <summary>
     /// 現在のゲーム状態。
     /// 変更する場合、以下の関数を使うこと。<br/>
