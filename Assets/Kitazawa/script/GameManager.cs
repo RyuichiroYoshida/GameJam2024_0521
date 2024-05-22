@@ -15,13 +15,13 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     // シングルトン
-    private static GameManager thisInstance;
+    private static GameManager _thisInstance;
     /// <summary>
     /// 現在のゲーム状態。
     /// 変更する場合、以下の関数を使うこと。<br/>
     /// <b>GameManager.SetGameState(GameState state)</b>
     /// </summary>
-    public GameState currentGameState;
+    private GameState _currentGameState;
 
     //アサイン
     [SerializeField] PlayerManager _playerManager = null;
@@ -30,17 +30,17 @@ public class GameManager : MonoBehaviour
 
     // 変数の定義
     /// <summary>タイム</summary>
-    public float gm_time;
+    public float Gm_time;
     /// <summary>スコア</summary>
-    public int gm_score;
+    public int Gm_score;
     Text label;
 
     void Awake()
     {
         //初期化
-        thisInstance = this;
-        gm_time = 0.0f;
-        gm_score = 0;
+        _thisInstance = this;
+        Gm_time = 0.0f;
+        Gm_score = 0;
         //初めのGameState
         SetGameState(GameState.Title);
         DontDestroyOnLoad(this.GameObject());
@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SetGameState(GameState state)
     {
-        currentGameState = state;
-        OnGameStateChanged(currentGameState);
+        _currentGameState = state;
+        OnGameStateChanged(_currentGameState);
     }
 
     // 状態が変わった時、Changed処理を実行
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     //ゲーム状態ごにUpdateを実行
     public void Update()
     {
-        switch (currentGameState)
+        switch (_currentGameState)
         {
             case GameState.Title:
                 TitleUpdate();
@@ -118,10 +118,10 @@ public class GameManager : MonoBehaviour
     void InGameUpdate()
     {
         //経過時間の管理
-        gm_time += Time.deltaTime;
+        Gm_time += Time.deltaTime;
         //各Updateの呼び出し
         _playerManager.GM_Update();
-        _uiManager.InGameText(gm_time, gm_score);
+        _uiManager.InGameText(Gm_time, Gm_score);
     }
 
     // Dead
@@ -136,8 +136,8 @@ public class GameManager : MonoBehaviour
     // Result
     void ResultChanged()
     {
-        Debug.Log("ゲーム時間: " + gm_time);
-        _uiManager.EndText(gm_score);
+        Debug.Log("ゲーム時間: " + Gm_time);
+        _uiManager.EndText(Gm_score);
     }
     void ResultUpdate()
     {
